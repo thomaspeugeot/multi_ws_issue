@@ -87,6 +87,8 @@ This "proper way" is unfortunatly not suitable here. If one build the "B" compon
 
 Is there a trick to the "a" workspace configuration for enabling the direct import ?
 
+Note : keeping esbuild is a desired outcome, otherwise the technical debt would grow.
+
 ## Tentative solution
 
 In the tsconfig.json of the "a" workspace, tell the compiler to uses local node_modules.
@@ -109,4 +111,4 @@ core.mjs:6531:22
 ...
 ```
 
-Any explanation of this error and any idea to solve this need would be welcomed.
+Any explanation of this error / any idea to solve this need would be welcomed.
