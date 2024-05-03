@@ -30,7 +30,7 @@ X [ERROR] Could not resolve "@angular/core"
 
 ### Description
 
-This repo contains two directories, "a" and "b". Each is an angular workspaces. The "a" workspace app component imports directly a standalone "BComponent" from the "b" workspace (b\src\app\b\b.component.ts).
+This repo contains two directories, "a" and "b". Each is an angular workspaces. The "a" workspace´s app-root component imports directly a standalone "BComponent" from the "b" workspace.
 
 ```ts
 import { NgModule } from '@angular/core';
@@ -72,6 +72,8 @@ Application bundle generation complete. [8.837 seconds]
 And the application is correctly displayed.
 
 ### Why is it important to import directly across workspaces and not import through a library ?
+
+Before flaming this question, please read the following.
 
 The import is a direct import of a component outside the workspace. This is contrary to the Angular proper way which is to import  components through a library (see https://angular.dev/tools/libraries/creating-libraries).
 
