@@ -71,6 +71,8 @@ Application bundle generation complete. [8.837 seconds]
 
 And the application is correctly displayed.
 
+Problem: installing modules in the dependant workspace is not optimal.
+
 ### Why is it important to import directly across workspaces and not import through a library ?
 
 Before flaming this question, please read the following.
