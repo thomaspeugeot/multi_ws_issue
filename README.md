@@ -79,9 +79,13 @@ Before flaming this question, please read the following.
 
 The import is a direct import of a component outside the workspace. This is contrary to the Angular proper way which is to import  components through a library (see https://angular.dev/tools/libraries/creating-libraries).
 
-The proper way would be to build a "BLib" lib within the "b" workspace, include the BComponent into the "Blib", publish the "BLib" lib into a private repo and then import it into the "a" workspace through a proper import in the node_modules.
+The proper way would be to build a "BLib" lib within the "b" workspace, include the standalone BComponent into the "Blib", publish the "BLib" lib as a module into a private repo and then import it into the "a" workspace through a proper import in the node_modules.
 
 This "proper way" is unfortunatly not suitable here. If one build the "B" component in the "b" workspace, that means an additonal 400 MB of modules into the "b" workspace node_modules. This is an example repo, but in real application repos, one workspace routinely imports components from 5 or more other workspaces (https://github.com/fullstack-lang/gonggantt). That translates into GBs of node_modules stuff. With angular v16, import outside the workspace did work, but the trick does not work anymore with angular v17. With tens of repos like this one, there is simply no enough disk space on mid-range computer.
+
+Besides, it seems that the idea of standalone component is to diminish the need for modules (cf. Angular web site). 
+
+> Standalone components provide a simplified way to build Angular applications. Standalone components, directives, and pipes aim to streamline the authoring experience by reducing the need for NgModules
 
 ## Question
 
