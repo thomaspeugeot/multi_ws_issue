@@ -1,4 +1,7 @@
 
+Edit : a solution has been found thanks to npm workspace (see branch "npm-workspace")
+
+
 # Issue in ng 17 with standalone component imported from outside the angular workspace
 
 ## Sequence
