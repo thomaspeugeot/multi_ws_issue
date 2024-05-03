@@ -122,7 +122,7 @@ Any explanation of this error / any idea to solve this need would be welcomed.
 ```
 git clone https://github.com/thomaspeugeot/multi_ws_issue.git
 cd multi_ws_issue
-git co npm-workspace
+git checkout  npm-workspace
 npm i
 cd a
 ng serve
