@@ -69,19 +69,23 @@ ng build
 Application bundle generation complete. [8.837 seconds]
 ```
 
+And the application is correctly displayed.
+
 ### Why is it important to import directly across workspaces and not import through a library ?
 
-The import is a direct import of a component outside the workspace. This is contrary to the Angular proper way which is to import components through a library (see https://angular.dev/tools/libraries/creating-libraries).
+The import is a direct import of a component outside the workspace. This is contrary to the Angular proper way which is to import  components through a library (see https://angular.dev/tools/libraries/creating-libraries).
 
-Indeed, the proper way would be to build a into a "B" lib within the "b" workspace, publish the "B" lib into a private repo and then import it into the "a" workspace through a proper import in the node_modules.
+The proper way would be to build a "BLib" lib within the "b" workspace, include the BComponent into the "Blib", publish the "BLib" lib into a private repo and then import it into the "a" workspace through a proper import in the node_modules.
 
-This "proper way" is unfortunatly not suitable here. If one build the "B" component in the "b" workspace, that means 400 MB of node_modules. This is an example repo, but in real application repos, one worksapce routinely imports components from 5 or more other workspaces. That translates into GBs of node_modules stuff. With angular v16, import outside the workspace did work, but the trick does not work anymore with angular v17. With tens of repos like this one, there is simply no enough disk space on mid-range computer.
+This "proper way" is unfortunatly not suitable here. If one build the "B" component in the "b" workspace, that means an additonal 400 MB of modules into the "b" workspace node_modules. This is an example repo, but in real application repos, one workspace routinely imports components from 5 or more other workspaces (https://github.com/fullstack-lang/gonggantt). That translates into GBs of node_modules stuff. With angular v16, import outside the workspace did work, but the trick does not work anymore with angular v17. With tens of repos like this one, there is simply no enough disk space on mid-range computer.
 
 ## Question
 
 Is there a trick to the "a" workspace configuration for enabling the direct import ?
 
-## Working solution
+## Tentative solution
+
+In the tsconfig.json of the "a" workspace, tell the compiler to uses local node_modules.
 
 ```json
     "paths": {
@@ -91,9 +95,14 @@ Is there a trick to the "a" workspace configuration for enabling the direct impo
     }
 ```
 
-## getting close to target conf
+compilation is fine but at runtime, there is an error
 
-| Step                                                                                  | Description / commit/tag | Status |
-| ------------------------------------------------------------------------------------- | ------------------------ | ------ |
-| App A imports component B from workspace "b"                                          | ImportBintoAppA          | OK     |
-| App A displays non standalone component A that imports component B from workspace "b" | ImportBintoComponentA    | -      |
+```log
+ERROR Error: NG0203: inject() must be called from an injection context such as a constructor, a factory function, a field initializer, or a function used with `runInInjectionContext`. Find more at https://angular.io/errors/NG0203
+    Angular 46
+    <anonymous> main.ts:5
+core.mjs:6531:22
+...
+```
+
+Any idea would be welcomed.
