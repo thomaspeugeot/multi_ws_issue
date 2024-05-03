@@ -116,3 +116,14 @@ core.mjs:6531:22
 ```
 
 Any explanation of this error / any idea to solve this need would be welcomed.
+
+# Solution, use of npm workspaces
+
+```
+git clone https://github.com/thomaspeugeot/multi_ws_issue.git
+cd multi_ws_issue
+git co npm-workspace
+npm i
+cd a
+ng serve
+```
